@@ -16,7 +16,7 @@
 </div>
 
 <div class="viewport" style="opacity: 0">
-    <form class="sidebar" role="navigation" id="sidebar" ng-submit="search_submit()" du-scroll-container="markdownArea">
+    <form class="sidebar" role="navigation" id="sidebar" ng-submit="search_submit()">
         <input type="text" id="search" ng-model="query" placeholder="Search" autofocus autocomplete="off">
         <a ng-repeat="navitem in navitems | filter: query" ng-href="#{{navitem.id}}" du-scrollspy du-smooth-scroll class="navitem {{navitem.tag}}">{{navitem.text}}</a>
     </form>
@@ -35,7 +35,7 @@
     $script('/assets/js/angular.min.js', function () {
         $script(['/assets/js/angular-ui-router.min.js',
             '/assets/js/ui-bootstrap-tpls-0.11.0.min.js',
-            'assets/js/angular-scroll.min.js',
+            'assets/js/angular-scroll.js',
             '/app/app.js'], 'angular');
     });
     $script(['/assets/js/showdown.js', '/assets/js/prettify.min.js']);

@@ -11,7 +11,7 @@ var App = angular.module('docs', ['ui.router', 'ui.bootstrap', 'duScroll'])
             url: '/'
         })
             .state('marked-down', {
-                template: '<div du-scroll-container id="markdownArea" flourish></div>',
+                template: '<div id="markdownArea" flourish></div>',
                 url: '/resources/{path:.*}'
             })
             .state('404', {
