@@ -1,45 +1,47 @@
 <!doctype html>
 <html lang="en" id="ng-app">
 <head>
-  <meta charset="UTF-8">
-  <title>AngularJS Learning</title>
-  <meta name="description" content="Resources for AngularJS Developers">
-  <link rel="stylesheet" href="app/app.css">
-  <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <title>AngularJS Learning</title>
+    <meta name="description" content="Resources for AngularJS Developers">
+    <link rel="stylesheet" href="app/app.css">
+    <meta name="viewport" content="width=device-width">
 </head>
-<body role="document" ng-controller="DocsCtrl">
+<body role="document" ng-controller="cnc">
 
-  <div class="intro core maximize">
+<div class="intro core maximize">
     <div class="core-content">
-      <h1>AngularJS Learning</h1>
+        <h1>AngularJS Learning</h1>
     </div>
-  </div>
+</div>
 
-  <div class="viewport" style="opacity: 0">
-    <form class="sidebar" role="navigation" id="sidebar" ng-submit="search_submit()">
-      <input type="text" id="search" ng-model="query" placeholder="Search" autofocus autocomplete="off">
-      <a ng-repeat="navitem in navitems | filter: query" href="#{{navitem.id}}" class="navitem {{navitem.tag}}">{{navitem.text}}</a>
+<div class="viewport" style="opacity: 0">
+    <form class="sidebar" role="navigation" id="sidebar" ng-submit="search_submit()" du-scroll-container="markdownArea">
+        <input type="text" id="search" ng-model="query" placeholder="Search" autofocus autocomplete="off">
+        <a ng-repeat="navitem in navitems | filter: query" ng-href="#{{navitem.id}}" du-scrollspy du-smooth-scroll class="navitem {{navitem.tag}}">{{navitem.text}}</a>
     </form>
 
     <div class="main" role="main">
-      <div class="container">
-        <a href="#sidebar" class="sidebar-control sidebar-open" ng-click="search_focus()">☰</a>
-        <a href="#" class="sidebar-control sidebar-close">☰</a>
-        <div id="markdown"></div>
-      </div>
+        <div class="container">
+            <a href="#sidebar" class="sidebar-control sidebar-open" ng-click="search_focus()">☰</a>
+            <a href="#" class="sidebar-control sidebar-close">☰</a>
+            <div ui-view></div>
+        </div>
     </div>
-  </div>
+</div>
 </body>
 <script src="/assets/js/script.min.js"></script>
 <script>
-    $script('/assets/js/angular.min.js', function(){
-        $script(['/assets/js/angular-route.min.js',
-            '/app/app.js'],'angular');
+    $script('/assets/js/angular.min.js', function () {
+        $script(['/assets/js/angular-ui-router.min.js',
+            '/assets/js/ui-bootstrap-tpls-0.11.0.min.js',
+            'assets/js/angular-scroll.min.js',
+            '/app/app.js'], 'angular');
     });
-    $script(['/assets/js/showdown.js','/assets/js/prettify.min.js']);
+    $script(['/assets/js/showdown.js', '/assets/js/prettify.min.js']);
 
-    $script.ready('angular', function(){
-        angular.bootstrap(document,['docs']);
+    $script.ready('angular', function () {
+        angular.bootstrap(document, ['docs']);
     })
 </script>
 </html>
