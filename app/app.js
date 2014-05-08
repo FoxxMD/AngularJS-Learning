@@ -7,12 +7,12 @@ var App = angular.module('docs', ['ui.router', 'ui.bootstrap', 'duScroll'])
        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file):/);
 
         $stateProvider.state('home', {
-            templateUrl: '/app/templates/home.html',
+            template: '<div flourish></div>',
             url: '/',
             mPath:'README'
         })
             .state('marked-down', {
-                template: '<div id="markdownArea" flourish></div>',
+                template: '<div flourish></div>',
                 url: '/resources/{path:.*}'
             })
             .state('404', {
@@ -32,6 +32,18 @@ App.controller('cnc', ['$scope', '$state', '$rootScope', function ($scope, $stat
             window.location.hash = navitems[0].getAttribute('href');
         }
     };
+    $rootScope.$on('duScrollspy:becameActive', function($event, $element){
+        var parentElem = angular.element($element[0].offsetParent),
+            buffer = parentElem[0].offsetHeight*0.25;
+        if($element[0].offsetTop+buffer > (parentElem[0].offsetHeight+parentElem[0].scrollTop))
+        {
+            parentElem.scrollTo($element, (parentElem[0].offsetHeight*0.75), 400);
+        }
+        else if($element[0].offsetTop < parentElem[0].scrollTop+buffer)
+        {
+            parentElem.scrollTo($element, (parentElem[0].offsetHeight*0.25), 400);
+        }
+    });
 
 }]);
 
@@ -50,27 +62,37 @@ App.directive('flourish', ['$rootScope', '$stateParams', '$state', '$http', func
 
                 var headings = markDOM[0].getElementsByClassName('heading'),
                     heading,
-                    link;
+                    sectionContent,
+                    elementId;
 
                 for (var i = 0; i < headings.length; i++) {
                     heading = headings.item(i);
+                    sectionContent = heading.nextElementSibling;
+                    elementId = heading.id;
 
-                    link = document.createElement('a');
-                    link.href = '#' + heading.id;
+
+                    section = document.createElement('div');
+                    section.id = heading.id;
+
+                    heading.parentNode.insertBefore(section,heading);
+
+                    heading.parentNode.removeChild(heading);
+                    heading.removeAttribute('id');
+                    sectionContent.parentNode.removeChild(sectionContent);
+
+                    section.appendChild(heading);
+                    section.appendChild(sectionContent);
+
 
                     if (i === 0) {
-                        topid = heading.id;
+                        topid = elementId;
                     }
 
                     $rootScope.navitems[i] = {
                         tag: heading.tagName.toLowerCase(),
-                        id: heading.id,
+                        id: elementId,
                         text: heading.innerText || heading.textContent
                     };
-
-                    link.innerHTML = heading.innerHTML;
-                    heading.innerHTML = '';
-                    heading.appendChild(link);
 
                     var pre = markDOM[0].getElementsByTagName('pre');
 

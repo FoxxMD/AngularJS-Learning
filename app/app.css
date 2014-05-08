@@ -643,14 +643,19 @@ a {
   border-bottom: 1px solid;
 }
 
-a:focus {
+a:focus,
+a.active{
   color: white;
   background: #449cc8;
   outline: 2px solid #449cc8;
 }
 
-a.active{
-    color:white;
+#tableofcontents{
+    display:none;
+}
+
+a[href='#tableofcontents']{
+    display:none;
 }
 
 h1 a,

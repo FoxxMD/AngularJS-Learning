@@ -1,9 +1,11 @@
-AngularJS-Learning
+AngularJS Learning
 ==================
 
-A bunch of links to blog posts, articles, videos, etc for learning AngularJS. This list is in its early stages. Feel free to submit a pull request if you have some links/resources to add. Also, I try to verify that the articles below have some real content (i.e. aren't 2 paragraph blog posts with little information) to ensure I'm not listing "fluff" pieces. If you have an idea for a better way to organize these links, please let me know. As I find similar posts in the "General Topics" section, I will break them out into their own categories.
+Your one-stop shop for resources on learning AngularJS. Within it's depths you will find books, videos, articles, tutorials, and much more all here to help you on your way to Angular Gurudom.
 
-NOTE: LINKS PRECEDED WITH A ** DISCUSS NEW STUFF IN ANGULAR 1.2. 
+**This list is a work in progress! If you see an error or would like to contribute please make a pull-request. Over time these sections will be broken up into more detailed pages, stay tuned!**
+
+_Note: Links preceded with ** discuss new stuff in Angular 1.2+_
 
 ### Table of Contents
 [Books](#books)  

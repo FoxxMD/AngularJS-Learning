@@ -61,8 +61,9 @@ angular.module('duScroll.scrollHelpers', []).run([
         return;
       var startTime = null;
       if (scrollAnimation) {
-        cancelAnimation(scrollAnimation);
-        deferred.reject();
+        //cancelAnimation(scrollAnimation);
+        //deferred.reject();
+        //CUSTOM CODE
       }
       var el = this;
       deferred = $q.defer();
