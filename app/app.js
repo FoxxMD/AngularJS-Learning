@@ -8,7 +8,8 @@ var App = angular.module('docs', ['ui.router', 'ui.bootstrap', 'duScroll'])
 
         $stateProvider.state('home', {
             templateUrl: '/app/templates/home.html',
-            url: '/'
+            url: '/',
+            mPath:'README'
         })
             .state('marked-down', {
                 template: '<div id="markdownArea" flourish></div>',
@@ -39,7 +40,7 @@ App.directive('flourish', ['$rootScope', '$stateParams', '$state', '$http', func
         restrict: 'AE',
         link: function (scope, element, attrs) {
             var markDOM = angular.element(element[0]),
-                markdownUrl = $stateParams.path + '.md';
+                markdownUrl = ($state.current.mPath || $stateParams.path) + '.md';
 
             scope.convert = function () {
                 $rootScope.navitems = [];
